@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/google-map/google-map-marker.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view2">
@@ -19,13 +21,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+      .map-container {
+        height: 300px;
+      }
     </style>
 
     <div class="card">
       <div class="circle">2</div>
-      <h1>View Two</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
+      <h1>Venue</h1>
+      <p>Hotel OSSA **** Congress & SPA</p>
+      <p>Ossa 1, 96-200 Rawa Mazowiecka</p>
+      <div class="map-container">
+        <google-map fit-to-marker latitude="51.804024" longitude="20.382302" disableDefaultUi api-key="AIzaSyB2CFEqB2CleQ-c1fClpR6O5LeFXkQquKQ">
+          <google-map-marker latitude="51.804024" longitude="20.382302" draggable="false"></google-map-marker>
+        </google-map>
+      </div>
     </div>
   </template>
 
