@@ -9,6 +9,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view1">
@@ -23,9 +26,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <h1>Agenda</h1>
+      <div role="listbox">
+        <paper-icon-item>
+          <iron-icon icon="my-icons:polymer" slot="item-icon">
+          </iron-icon>
+          <paper-item-body two-line>
+            <div>10:30-12:00</div>
+            <div secondary>Web Components with Polymer</div>
+          </paper-item-body>
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="my-icons:coffee" slot="item-icon">
+          </iron-icon>
+          <paper-item-body two-line>
+            <div>12:00-12:15</div>
+            <div secondary>Coffee break</div>
+          </paper-item-body>
+        </paper-icon-item>
+        <paper-icon-item>
+          <iron-icon icon="my-icons:computer" slot="item-icon">
+          </iron-icon>
+          <paper-item-body two-line>
+            <div>12:15-13:15</div>
+            <div secondary>Write your first Web Component</div>
+          </paper-item-body>
+        </paper-icon-item>
+      </div>
     </div>
   </template>
 
