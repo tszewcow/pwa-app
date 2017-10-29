@@ -28,6 +28,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h1>Playground</h1>
 
       <my-card></my-card>
+      <my-card></my-card>
+      <my-card></my-card>
+      <my-card></my-card>
 
       <div id="container"></div>
     </div>
@@ -42,13 +45,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ready() {
         super.ready();
 
-        setTimeout(() => {
-          this.$.container.appendChild(document.createElement('my-card'));
-        }, 1500);
-
-        setTimeout(() => {
-          this.shadowRoot.querySelectorAll('my-card').forEach(card => card.remove());
-        }, 3000);
+//        setTimeout(() => {
+//          this.$.container.appendChild(document.createElement('my-card'));
+//        }, 1500);
+//
+//        setTimeout(() => {
+//          this.shadowRoot.querySelectorAll('my-card').forEach(card => card.remove());
+//        }, 3000);
 
       }
     }

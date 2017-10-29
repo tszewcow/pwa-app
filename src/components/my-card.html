@@ -5,7 +5,7 @@
   <template>
     <style>
       :host {
-        display: block;
+        display: inline-block;
       }
     </style>
     <paper-card heading="header">
@@ -40,6 +40,20 @@
           prop1: {
             type: String,
             value: 'my-card'
+          },
+          propObj: {
+            type: Object,
+            value: {
+              counter: 0
+            }
+          },
+          propObjIsolated: {
+            type: Object,
+            value: () => {
+              return {
+                counter: 0
+              }
+            }
           }
         };
       }
@@ -51,6 +65,8 @@
       ready(){
         super.ready();
         console.log('my card ready called');
+        this.propObj.counter ++;
+        this.propObjIsolated.counter ++;
       }
 
       connectedCallback(){
