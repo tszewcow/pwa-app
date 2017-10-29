@@ -1,0 +1,77 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+<dom-module id="my-card">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <paper-card heading="header">
+      <div class="card-content">
+        <p>content</p>
+      </div>
+      <div class="card-actions">
+        <div class="horizontal justified">
+          <paper-icon-button icon="icons:event"></paper-icon-button>
+          <paper-button>5:30PM</paper-button>
+          <paper-button>7:30PM</paper-button>
+          <paper-button>9:00PM</paper-button>
+          <paper-button class="cafe-reserve">Reserve</paper-button>
+        </div>
+      </div>
+    </paper-card>
+  </template>
+
+  <script>
+    /**
+     * `my-card`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class MyCard extends Polymer.Element {
+      static get is() { return 'my-card'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'my-card'
+          }
+        };
+      }
+      constructor(){
+        super();
+        console.log('my-card constructor called');
+      }
+
+      ready(){
+        super.ready();
+        console.log('my card ready called');
+      }
+
+      connectedCallback(){
+        super.connectedCallback();
+
+        console.log('my card attached to dom');
+      }
+
+      disconnectedCallback(){
+        super.disconnectedCallback();
+
+        console.log('my card detached from dom');
+      }
+
+      attributeChangedCallback(){
+        super.attributeChangedCallback();
+
+        console.log('my card property changed');
+      }
+    }
+
+    window.customElements.define(MyCard.is, MyCard);
+  </script>
+</dom-module>
