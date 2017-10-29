@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="components/my-card.html">
 <link rel="import" href="shared-styles.html">
 
@@ -27,12 +28,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="circle">3</div>
       <h1>Playground</h1>
 
-      <my-card></my-card>
-      <my-card></my-card>
-      <my-card></my-card>
-      <my-card></my-card>
-
       <div id="container"></div>
+      {{person.name}}
+
+      <template is="dom-repeat" items="[[cards]]">
+        <my-card></my-card>
+      </template>
+      <paper-button on-tap="_addCard">add card</paper-button>
+      <paper-button on-tap="_updatePerson">update person</paper-button>
     </div>
   </template>
 
@@ -40,6 +43,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     class MyView3 extends Polymer.Element {
       static get is() {
         return 'my-view3';
+      }
+
+      static get properties(){
+        return {
+          cards: {
+            type: Array,
+            value: []
+          },
+          person: {
+            type: Object,
+            value: {
+              name: 'tomasz'
+            }
+          }
+        }
       }
 
       ready() {
@@ -53,6 +71,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 //          this.shadowRoot.querySelectorAll('my-card').forEach(card => card.remove());
 //        }, 3000);
 
+      }
+
+      _addCard(){
+//        this.cards.push({});
+        this.push('cards', {});
+      }
+
+      _updatePerson(){
+//        this.person.name = this.person.name + ' updated';
+        this.set('person.name', this.person.name + ' updated');
       }
     }
 
