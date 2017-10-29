@@ -1,0 +1,71 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="my-card.html">
+
+
+
+<dom-module id="my-collapse">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-card {
+        width: 100%;
+      }
+
+      my-card {
+        padding: 20px;
+      }
+
+      paper-card.header {
+        background-color: lightgray;
+      }
+    </style>
+
+    <paper-card on-click="toggle" class="header"><p>[[name]]</p></paper-card>
+    <paper-card>
+    <iron-collapse id="collapse">
+      <template is="dom-repeat" items="[[cards]]">
+        <my-card selected="[[item.selected]]"></my-card>
+      </template>
+    </iron-collapse>
+    </paper-card>
+  </template>
+
+  <script>
+    /**
+     * `my-collapse`
+     *
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class MyCollapse extends Polymer.Element {
+      static get is() {
+        return 'my-collapse';
+      }
+
+      static get properties() {
+        return {
+          name: {
+            type: String
+          },
+          cards: {
+            type: Array,
+            value: []
+          }
+        }
+      }
+
+      toggle(){
+        this.$.collapse.toggle();
+      }
+    }
+
+    window.customElements.define(MyCollapse.is, MyCollapse);
+  </script>
+</dom-module>

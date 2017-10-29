@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="components/my-card.html">
+<link rel="import" href="components/my-collapse.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view3">
@@ -28,14 +29,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="circle">3</div>
       <h1>Playground</h1>
 
-      <div id="container"></div>
-      {{person.name}}
-
-      <template is="dom-repeat" items="[[cards]]">
-        <my-card></my-card>
+      <template is="dom-repeat" items="[[groups]]">
+        <my-collapse name="[[item.name]]" cards="[[item.items]]"></my-collapse>
       </template>
-      <paper-button on-tap="_addCard">add card</paper-button>
-      <paper-button on-tap="_updatePerson">update person</paper-button>
+
     </div>
   </template>
 
@@ -45,42 +42,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return 'my-view3';
       }
 
-      static get properties(){
+      static get properties() {
         return {
-          cards: {
+          groups: {
             type: Array,
-            value: []
-          },
-          person: {
-            type: Object,
-            value: {
-              name: 'tomasz'
-            }
+            value: [
+              {name: 'group 1', items: [{selected: true}, {}, {}]},
+              {name: 'group 2', items: [{}]},
+              {name: 'group 3', items: [{}, {selected: true}]},
+            ]
           }
         }
       }
 
       ready() {
         super.ready();
-
-//        setTimeout(() => {
-//          this.$.container.appendChild(document.createElement('my-card'));
-//        }, 1500);
-//
-//        setTimeout(() => {
-//          this.shadowRoot.querySelectorAll('my-card').forEach(card => card.remove());
-//        }, 3000);
-
-      }
-
-      _addCard(){
-//        this.cards.push({});
-        this.push('cards', {});
-      }
-
-      _updatePerson(){
-//        this.person.name = this.person.name + ' updated';
-        this.set('person.name', this.person.name + ' updated');
       }
     }
 

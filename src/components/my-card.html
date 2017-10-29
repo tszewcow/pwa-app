@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 
 <dom-module id="my-card">
   <template>
@@ -8,17 +9,13 @@
         display: inline-block;
       }
     </style>
-    <paper-card heading="header">
+    <paper-card>
       <div class="card-content">
         <p>content</p>
       </div>
       <div class="card-actions">
         <div class="horizontal justified">
-          <paper-icon-button icon="icons:event"></paper-icon-button>
-          <paper-button>5:30PM</paper-button>
-          <paper-button>7:30PM</paper-button>
-          <paper-button>9:00PM</paper-button>
-          <paper-button class="cafe-reserve">Reserve</paper-button>
+          <paper-checkbox checked="[[selected]]"></paper-checkbox>
         </div>
       </div>
     </paper-card>
@@ -54,6 +51,10 @@
                 counter: 0
               }
             }
+          },
+          selected: {
+            type: Boolean,
+            value: false
           }
         };
       }
