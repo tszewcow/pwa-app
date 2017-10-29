@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view1">
@@ -53,12 +54,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-item-body>
         </paper-icon-item>
       </div>
+      <paper-button raised on-tap="_navigate">Go to map</paper-button>
     </div>
+
   </template>
 
   <script>
     class MyView1 extends Polymer.Element {
       static get is() { return 'my-view1'; }
+
+      _navigate(){
+        this.dispatchEvent(new CustomEvent('page-change-requested', {
+          detail: 'view2',
+          bubbles: true,
+          composed: true
+        }));
+      }
     }
 
     window.customElements.define(MyView1.is, MyView1);

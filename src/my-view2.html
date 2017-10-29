@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/google-map/google-map.html">
 <link rel="import" href="../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view2">
@@ -36,12 +37,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <google-map-marker latitude="51.804024" longitude="20.382302" draggable="false"></google-map-marker>
         </google-map>
       </div>
+      <paper-button raised on-tap="_navigate">Go to agenda</paper-button>
     </div>
   </template>
 
   <script>
     class MyView2 extends Polymer.Element {
       static get is() { return 'my-view2'; }
+      static get properties(){
+        return {
+          route: {
+            type: Object,
+            notify: true
+          }
+        }
+      }
+
+      _navigate(){
+        this.set('route.path', '/view1');
+      }
     }
 
     window.customElements.define(MyView2.is, MyView2);
