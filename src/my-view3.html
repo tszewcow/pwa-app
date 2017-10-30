@@ -45,6 +45,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return 'my-view3';
       }
 
+      static get observers(){
+        return [
+          '_handlePersonUpdate(person.*)',
+          '_handleCardsUpdate(cards.*)'
+        ]
+      }
+
       static get properties(){
         return {
           cards: {
@@ -81,6 +88,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _updatePerson(){
 //        this.person.name = this.person.name + ' updated';
         this.set('person.name', this.person.name + ' updated');
+      }
+
+      _handlePersonUpdate(e){
+        console.log(e);
+      }
+
+      _handleCardsUpdate(e){
+        console.log(e);
       }
     }
 
