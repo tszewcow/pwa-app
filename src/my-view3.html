@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="components/my-card.html">
 <link rel="import" href="components/my-collapse.html">
 <link rel="import" href="shared-styles.html">
@@ -29,9 +30,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="circle">3</div>
       <h1>Playground</h1>
 
-      <template is="dom-repeat" items="[[groups]]">
-        <my-collapse name="[[item.name]]" cards="[[item.items]]"></my-collapse>
-      </template>
+      <!--<template is="dom-repeat" items="[[groups]]">-->
+        <!--<my-collapse name="[[item.name]]" cards="[[item.items]]"></my-collapse>-->
+      <!--</template>-->
+
+      <iron-ajax
+        auto
+        url="src/data/people.json"
+        handle-as="json"
+        on-response="_handlePeopleResponse"
+      ></iron-ajax>
+
+      <iron-ajax
+        auto
+        url="src/data/people.json"
+        handle-as="json"
+        on-response="_handleBooksResponse"
+      ></iron-ajax>
 
     </div>
   </template>
@@ -40,6 +55,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     class MyView3 extends Polymer.Element {
       static get is() {
         return 'my-view3';
+      }
+
+      static get observers(){
+        return ['_handleAllXHRs(books, people)']
       }
 
       static get properties() {
@@ -51,12 +70,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               {name: 'group 2', items: [{}]},
               {name: 'group 3', items: [{}, {selected: true}]},
             ]
+          },
+          books: {
+            type: Array
+          },
+          people: {
+            type: Array
           }
         }
       }
 
       ready() {
         super.ready();
+      }
+
+      _handlePeopleResponse(response){
+        console.log(response);
+        this.set('people', response.detail.response);
+      }
+
+      _handleBooksResponse(response){
+        console.log(response);
+        this.set('books', response.detail.response);
+      }
+
+      _handleAllXHRs(books, people) {
+        if (books && people){
+          console.log('got all that i wanted');
+        }
       }
     }
 
